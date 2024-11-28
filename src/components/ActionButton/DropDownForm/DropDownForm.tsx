@@ -84,7 +84,7 @@ const DropDownForm: FC<TDropDownFormProps> = ({
         onChange={handleTextChange}
         autoFocus
         placeholder={formPlaceholder}
-        //onBlur={() => setIsFormOpen(false)}
+        onBlur={() => setIsFormOpen(false)}
       />
       <div className={buttons}>
         <button
@@ -92,7 +92,9 @@ const DropDownForm: FC<TDropDownFormProps> = ({
           onMouseDown={handleButtonClick}>
           {buttonTitle}
         </button>
-        <FiX className={close} />
+        <FiX 
+          className={close} 
+        />
       </div>
     </div>
   )
