@@ -1,11 +1,11 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { container, description, title } from './Task.css';
 import { Draggable } from 'react-beautiful-dnd';
 
 type TTaskProps = {
   index: number;
   id: string;
-  boardId: string;
+  boardId?: string;
   taskName: string;
   taskDescription: string;
 }
@@ -13,7 +13,6 @@ type TTaskProps = {
 const Task: FC<TTaskProps> = ({
   index,
   id,
-  boardId,
   taskName,
   taskDescription,
 }) => {
