@@ -1,50 +1,75 @@
-# React + TypeScript + Vite
+# React Task App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Trello-like task management application built with React and TypeScript. This application allows users to create and manage tasks across multiple boards and lists, with drag-and-drop functionality for easy organization.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Multiple Boards**: Create and manage separate boards for different projects.
+- **Custom Lists**: Add, edit, and delete lists within each board.
+- **Task Management**: Create, edit, and delete tasks within lists.
+- **Drag & Drop**: Easily reorder tasks within and between lists using `react-beautiful-dnd`.
+- **Activity Log**: Tracks all major actions (creation, deletion, moves) for transparency.
+- **State Persistence**: User data is saved and synced with Firebase.
+- **Responsive Design**: The UI is built to be usable across different screen sizes.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Frontend**: React, TypeScript, Vite
+- **State Management**: Redux Toolkit
+- **Styling**: Vanilla-extract
+- **Drag & Drop**: `react-beautiful-dnd`
+- **Backend & Database**: Firebase (Authentication and Firestore)
+- **Icons**: `react-icons`
+- **Unique ID Generation**: `uuid`
 
-- Configure the top-level `parserOptions` property like this:
+## 📂 Folder Structure
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+The project follows a feature-oriented structure to keep the codebase organized and maintainable.
+
+```
+/src
+├── assets/         # Static assets like images and SVGs
+├── components/     # Reusable React components
+│   ├── ActionButton/ # Generic button for adding lists/tasks
+│   ├── BoardList/    # Sidebar for managing boards
+│   ├── EditModal/    # Modal for editing items
+│   ├── List/         # Component for a single list (column)
+│   └── Task/         # Component for a single task item
+├── hooks/          # Custom React hooks (e.g., useAuth, redux hooks)
+├── store/          # Redux Toolkit state management
+│   ├── reducer/      # Root reducer
+│   └── slices/       # State slices for boards, user, etc.
+├── types/          # TypeScript type definitions
+├── App.tsx         # Main application component
+├── main.tsx        # Application entry point
+└── firebase.ts     # Firebase configuration and initialization
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🚀 Getting Started
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Prerequisites
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Node.js and npm installed.
+- A Firebase project set up with Authentication and Firestore enabled.
+
+### Installation & Setup
+
+1.  **Clone the repository.**
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Configure Firebase:** You will need to set up your own Firebase project and connect it. The configuration details are managed in `src/firebase.ts`.
+
+### Available Scripts
+
+In the project directory, you can run:
+
+#### `npm run dev`
+Runs the app in development mode.
+
+#### `npm run build`
+Builds the app for production.
+
+#### `npm run lint`
+Lints the codebase for errors.

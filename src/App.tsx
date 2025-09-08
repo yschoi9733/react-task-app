@@ -8,7 +8,7 @@ import LoggerModal from "./components/LoggerModal/LoggerModal";
 import { deleteBoard, sort } from "./store/slices/boardSlice";
 import { v4 } from "uuid";
 import { addLog } from "./store/slices/loggerSlice";
-import { DragDropContext } from 'react-beautiful-dnd';  
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 function App() {
   const dispatch = useTypedDispatch();
@@ -50,11 +50,23 @@ function App() {
     }
   }
 
-  const handleDragEnd = (result: any) => {
-    const {destination, source, draggableId} = result;
+  const handleDragEnd = (result: DropResult) => {
+    if (!result.destination) {
+      return;
+    }
+
+    const { destination, source, draggableId } = result;
+
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    ) {
+      return;
+    }
+
     const sourceList = lists.filter(
       list => list.listId === source.droppableId
-    )[0]
+    )[0];
     const destinationList = lists.filter(
       list => list.listId === destination.droppableId
     )[0]
